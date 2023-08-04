@@ -50,3 +50,60 @@
     echo "<p>num4 = $num4</p>";
     echo "<p>num5 = $num5</p>";
 ?>
+
+<h1>Increment (++)</h1>
+<?php
+    $x = 235;
+
+    echo "<p>Initial Value: $x</p>";
+    echo "<p>pre-increment: ".++$x."</p>"; //Pre-increment => add 1 to the value first, then display the updated value. OUTPUT: 236
+    echo "<p>post-increment: ".$x++."</p>"; //post-increment => displays the current value first, then add 1 to the value. OUTPUT: 236
+    echo "<p>Final Value: $x</p>"; //OUTPUT: 237
+?>
+
+<h1>Decrement (--)</h1>
+<?php
+    $y = 774;
+
+    echo "<p>Initial value: $y</p>";
+    echo "<p>pre-decrement: ".--$y."</p>"; //pre-decrement, subtract 1 first from the value then display. OUTPUT: 773;
+    echo "<p>post-decrement: ".$y--."</p>"; //post-decrement, display the value first then subtract 1 from the value. OUTPUT: 773
+    echo "<p>Final value: $y</p>"; //OUTPUT: 772
+?>
+
+<h1>Comparison Operator</h1>
+<?php
+    $a = 5;
+    $b = 5.0;
+    $c = 11;
+    $d = 15;
+
+    $equal = ($a == $b); //TRUE
+    $identical = ($a === $b); //FALSE
+    $not_equal1 = ($b != $c); //TRUE
+    $not_equal2 = ($a <> $d); //TRUE
+    $greater_than = ($d > $c); //TRUE
+    $less_than = ($a < $c); //TRUE
+    $greater_than_or_equal = ($d >= $d); //TRUE
+    $less_than_or_equal = ($b <= $b); //TRUE
+
+    echo "<p>$a == $b is $equal</p>";
+    echo "<p>$a === $b is $identical</p>";
+    echo "<p>$b != $c is $not_equal1</p>";
+    echo "<p>$a <> $d is $not_equal2</p>";
+    echo "<p>$d > $c is $greater_than</p>";
+    echo "<p>$a < $c is $less_than</p>";
+    echo "<p>$d >= $d is $greater_than_or_equal</p>";
+    echo "<p>$b <= $b is $less_than_or_equal</p>";
+?>
+<h1>Logical Operators</h1>
+<?php
+
+    $and = TRUE && TRUE; //TRUE
+    $or = TRUE || FALSE; //TRUE
+    $not = !FALSE; //TRUE
+
+    echo "<p>TRUE && TRUE is $and</p>";
+    echo "<p>TRUE || FALSE is $or</p>";
+    echo "<p>!FALSE is $not</p>";
+?>

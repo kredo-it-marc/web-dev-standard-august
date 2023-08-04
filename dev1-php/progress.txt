@@ -1,0 +1,57 @@
+Day 1 - July 31, 2023
+
+1. Pre-test
+2. Bootstrap
+    a. Intro to Bootstrap
+    b. Grid System
+
+Homework:
+1. Activity 2 - Bootstrap Grid System
+
+
+Day 2 - August 01, 2023
+
+1. Typography
+    Headings
+    Displays
+    Alignment
+    Text Transform
+    Activity 3 Typography
+2. Images
+    Images
+    Font Awesome
+
+Homework:
+1. Activity 4 - Images and Icons
+
+Day 3 - August 2, 2023
+
+1. Utilities
+    a. Float
+    b. Spacing (Margin & Padding)
+    c. Sizing (Width & Height)
+    d. Borders
+
+2. Navbar
+3. Table
+
+Homework
+1. Activity 5 - Card Activity
+
+
+Day 4 - August 3, 2023
+
+1. Bootstrap Forms
+2. PHP
+    a. Intro to PHP
+    b. Variables
+    c. Data Types
+    d. Operators (To be continued)
+
+Day 5 - Aug 4, 2023
+
+1. Operators (cont'd)
+2. Form Handling
+
+Homework
+1. Blog portfolio pages: click here
