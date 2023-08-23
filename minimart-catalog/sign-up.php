@@ -41,6 +41,8 @@
                     <input type="password" name="password" id="password" class="form-control mb-3" required>
                     <input type="submit" value="Sign up" class="btn btn-success w-100" name="btn_sign_up">
                 </form>
+
+                <p class="card-text text-center text-muted mt-4">Already have an account? <a href="login.php">login</a> here</p>
             </div>
         </div>
 

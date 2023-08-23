@@ -36,6 +36,7 @@
                     <input type="password" name="password" id="password" class="form-control mb-3" required>
                     <input type="submit" value="Login" name="btn_login" class="btn btn-success w-100">
                 </form>
+                <p class="card-text text-center text-muted mt-4">Doesn't have an account yet? <a href="sign-up.php">sign up</a> here</p>
             </div>
         </div>
     </div>
@@ -51,6 +52,25 @@
         // $result->num_rows returns how many records are returned by the sql statement
         if($result->num_rows == 1 ) //check if the SQL returns 1 record. It means the username exists in the database
         {
+            //$result->fetch_assoc() ===> takes 1 record from the result set and returns it as an associative array. The column names from the database/table becomes the key to this associative array
+            $user_details = $result->fetch_assoc();
+            $confirm_password = password_verify($password, $user_details["password"]);
+            
+            if( $confirm_password )
+            {
+                session_start(); // allows you to access SESSION and save values
+                //to save values
+                $_SESSION["user_id"] = $user_details["id"];
+                $_SESSION["username"] = $user_details["username"];
+
+                //if the passwords match, redirect to products.php
+                header("Location:products.php");
+            }
+            else
+            {
+                //if the password doesn't match, display an error message
+                echo "<div class='alert alert-danger mx-auto text-center w-50'>Password is incorrect. Kindly try again.</div>";
+            }
 
         }
         else
