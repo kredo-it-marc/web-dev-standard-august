@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include "connection.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +14,16 @@
 <body class="bg-light">
     <?php include "navbar.php"; ?>
     <div class="container py-5">
+        <?php
+            if( isset($_POST["btn_add"]) )
+            {
+                //INPUT
+                $title = $_POST["title"];
+                            
+                //process
+                createSection($title);
+            }
+        ?>
         <form action="" method="post">
             <div class="row justify-content-center">
                 <div class="col-3 text-end"><label for="title" class="form-label">Title</label></div>
@@ -30,6 +41,24 @@
                 </thead>
                 <tbody>
                     <!-- display the sections here -->
+                    <?php
+                        $sections = getSections();
+                        
+                        if($sections && $sections->num_rows>0)
+                        {
+                            while($row = $sections->fetch_assoc())
+                            {
+                                echo "<tr>";
+                                echo "<td>".$row["id"]."</td>";
+                                echo "<td>".$row["title"]."</td>";
+                                echo "</tr>";
+                            }
+                        }
+                        else
+                        {
+                            echo "<tr><td class='fst-italic text-center' colspan='2'>No sections to display.</td></tr>";
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -37,3 +66,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+    function createSection($title)
+    {
+        $conn = connection();
+        $sql = "INSERT INTO sections(title) VALUES('$title')";
+
+        if( $conn->query($sql) )
+        {
+            header("Refresh:0"); //reload the page
+        }
+        else
+        {
+            //error message
+            echo "<div class='alert alert-danger w-50 mx-auto text-center mb-3'>Failed to save the data. Kindly try again. <br><small>".$conn->error."</small></div>";
+        }
+    }
+
+    function getSections()
+    {
+        $conn = connection();
+        $sql = "SELECT * FROM sections";
+
+        return $conn->query($sql);
+    }
+?>

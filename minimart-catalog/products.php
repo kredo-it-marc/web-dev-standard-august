@@ -14,7 +14,7 @@
 <body class="bg-light">
     <?php include "navbar.php"; ?>
     <div class="container py-5">
-        <div class="w-50 mx-auto">
+        <div class="w-75 mx-auto">
             <div class="text-end">
                 <a href="add-product.php" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-circle-plus"></i> Add Product</a>        
             </div>
@@ -43,8 +43,11 @@
                                 echo "<td>".$row["title"]."</td>";
                                 echo "<td>".$row["description"]."</td>";
                                 echo "<td>".$row["price"]."</td>";
-                                echo "<td>".$row["section_id"]."</td>";
-                                echo "<td></td>";
+                                echo "<td>".$row["section"]."</td>";
+                                echo "<td>
+                                    <a class='btn btn-warning btn-sm' href='edit-product.php?product_id=".$row["id"]."'><i class='fa-solid fa-pen-to-square'></i></a>
+                                    <a class='btn btn-danger btn-sm' href='delete-product.php?product_id=".$row["id"]."'><i class='fa-solid fa-trash'></i></a>
+                                </td>";
                                 echo "</tr>";
                             }
                         }
@@ -65,7 +68,7 @@
     function getProducts()
     {
         $conn = connection(); //connect to the database
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT products.id, products.title, products.description, price, sections.title as section FROM products INNER JOIN sections on products.section_id = sections.id";
         return $conn->query($sql); //run the sql statement and return its output
     }
 ?>
