@@ -17,6 +17,19 @@
 <body class="bg-light">
     <?php include "navbar.php"; ?>
     <div class="container py-5">
+        <?php
+            if( isset($_POST["btn_save"]) )
+            {
+                //INPUT
+                $title = $_POST["title"];
+                $description = $_POST["description"];
+                $price = $_POST["price"];
+                $section_id = $_POST["section"];
+
+                //PROCESS
+                updateProduct($product_id,$title,$description,$price,$section_id);
+            }
+        ?>
         <div class="card w-50 mx-auto">
             <div class="card-header">
                 <h1 class="card-title display-4 text-center">Edit Product</h1>
@@ -78,5 +91,20 @@
         $sql = "SELECT * FROM products WHERE id = $product_id";
 
         return $conn->query($sql)->fetch_assoc(); //this returns the record as an associative array
+    }
+
+    function updateProduct($product_id,$title,$description,$price,$section_id)
+    {
+        $conn = connection();
+        $sql = "UPDATE products SET title= '$title', description = '$description', price=$price, section_id = $section_id WHERE id = $product_id";
+
+        if( $conn->query($sql) )
+        {
+            header("Location: products.php");
+        }
+        else
+        {
+            echo "<div class='alert alert-danger text-center w-50 mx-auto mb-3'>Failed to update the data. Kindly try again. <br><small>".$conn->error."</small></div>";
+        }
     }
 ?>
